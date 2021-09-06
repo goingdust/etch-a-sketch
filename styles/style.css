@@ -1,0 +1,12 @@
+.container {
+  display: flex;
+  justify-content: center;
+  background-color: blue;
+}
+
+.block {
+  border: 5px;
+  border-color: black;
+  width: 30px;
+  background-color: blue;
+}
