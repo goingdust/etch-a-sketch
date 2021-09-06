@@ -1,0 +1,1 @@
+The project is to make an etch-a-sketch toy (something between a sketchpad and an etch-a-sketch) that will flex my DOM manipulation skills and help me better understand the JavaScript methods I'm struggling with.
