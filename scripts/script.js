@@ -1,5 +1,6 @@
 const container = document.querySelector('.container');
-let numberofBlocks = 32;
+const blocks = document.querySelectorAll('.block');
+const numberofBlocks = 256;
 let blockDiv;
 
 for (let i = 0; i < numberofBlocks; i++) {
@@ -7,3 +8,8 @@ for (let i = 0; i < numberofBlocks; i++) {
   blockDiv.className = 'block';
   container.append(blockDiv);
 }
+
+blocks.forEach(block => {
+  block.addEventListener('mouseenter', () => console.log('Mouse enter'));
+  block.addEventListener('mouseleave', () => console.log('Mouse leave'));
+})

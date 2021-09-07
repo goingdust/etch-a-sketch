@@ -1,12 +1,16 @@
 .container {
-  display: flex;
-  justify-content: center;
-  background-color: blue;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: grid;
+  width: 300px;
+  grid-template-columns: repeat(16, 1fr);
+  align-items: stretch;
+
 }
 
 .block {
-  border: 5px;
-  border-color: black;
-  width: 30px;
-  background-color: blue;
+  background-color: rgb(204, 204, 204);
+  height: 1em;
 }
