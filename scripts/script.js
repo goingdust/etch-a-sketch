@@ -1,8 +1,8 @@
 const container = document.querySelector('.container');
 const block = document.querySelector('div');
 const quantity = document.querySelector('.quantity');
-const refresh = document.querySelector('button');
-const prompt = document.querySelector('p');
+const refresh = document.querySelector('.refresh');
+const prompt = document.querySelector('.prompt');
 let userInput = quantity.value;
 
 function createBlockGrid () {
@@ -22,19 +22,13 @@ function createBlockGrid () {
     blockDiv.className = 'block';
     container.append(blockDiv);
   }
-  setBlockLimit(userInput);
 }
 
 function setBlockLimit () {
-  if (userInput > 100) {
-    userInput = 100;
-    quantity.value = 100;
-    prompt.textContent = 'Too high! Please enter a number between 1 \
-    and 100.';
-  } else if (userInput < 1) {
-    userInput = 1;
-    quantity.value = 1;
-    prompt.textContent = 'Too low! Please enter a number between 1 \
+  if (userInput > 100 || userInput < 1 || userInput == null) {
+    userInput = 16;
+    quantity.value = 16;
+    prompt.textContent = 'That\'s no good! Please enter a number between 1 \
     and 100.';
   }
 }
@@ -45,4 +39,5 @@ block.addEventListener('mouseover', function (e) {
 
 refresh.addEventListener('click', () => location.reload());
 
+setBlockLimit(userInput);
 createBlockGrid();
