@@ -6,8 +6,8 @@
   display: grid;
   grid-template-columns: repeat(16, 1fr);
   grid-template-rows: repeat(16, 1fr);
-  width: 20rem;
-  height: 20rem;
+  width: 30rem;
+  height: 30rem;
 }
 
 .block {
