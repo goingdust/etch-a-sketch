@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="styles/style.css">
   <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" 
   rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap" 
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap" 
   rel="stylesheet">
   <script src="scripts/script.js" defer></script>
 </head>
@@ -17,12 +17,18 @@
   <h1>ETCH-A-SKETCH</h1>
   <p class="prompt">Unleash your... MASTERPIECE.<br>Please enter a number 
     between 1 and 100 to set the grid dimensions!<p>
-  <input type="number" class="quantity" name="quantity">
-  <button class="refresh">Enter Number</button>
-  <button class="start-over">Start Over</button>
-  <button class="eraser">Eraser</button>
-  <button class="random-color">Random Colour!</button>
-  <button class="gradient">Light to Black Gradient!</button>
-  <div class="container"></div>
+  <div class="form">
+    <input type="number" class="quantity" name="quantity">
+    <button class="refresh">Enter Number</button>
+  </div>
+  <div class="sketch-area">
+    <div class="container"></div>
+    <div class="buttons">
+      <button class="start-over">Start Over</button>
+      <button class="eraser">Eraser</button>
+      <button class="random-color">Random Colour!</button>
+      <button class="gradient">Light to Black Gradient!</button>
+    </div>
+  </div>
 </body>
 </html>

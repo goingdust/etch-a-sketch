@@ -8,8 +8,8 @@
   box-sizing: border-box;
 }
 
-body {
-  font-family: 'Open Sans', sans-serif;
+body, button, input {
+  font-family: 'DM Mono', monospace;
   color: var(--dark-grey-accent);
 }
 
@@ -20,20 +20,53 @@ h1 {
   text-align: center;
 }
 
-p {
-  color: black;
+button, .quantity {
+  background-color: var(--grid-background);
+  color: var(--dark-grey-accent);
+  border-style: none;
+  border-color: (--light-grey-accent);
+  padding: 0.8rem;
+  font-size: 0.9rem;
+  border-radius: 0.5rem;
+  margin: 1em;
+}
+
+.prompt {
+  text-align: center;
+  font-size: 1.2rem;
+  line-height: 1.5rem;
+}
+
+.form {
+  display: flex;
+  justify-content: center;
+}
+
+.sketch-area {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-top: 1em;
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
 }
 
 .container {
+  /*
   position: absolute;
   top: 55%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%); */
   display: grid;
   grid-template-columns: repeat(16, 1fr);
   grid-template-rows: repeat(16, 1fr);
-  width: 30rem;
-  height: 30rem;
+  width: 40rem;
+  height: 40rem;
   border-width: 0.5rem;
   border-color: var(--light-grey-accent);
   border-style: dashed;

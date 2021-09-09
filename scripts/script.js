@@ -9,12 +9,12 @@ const prompt = document.querySelector('.prompt');
 let userInput = quantity.value;
 let currentFunction;
 
-createBlockGrid(userInput);
+createBlockGrid();
 
 function createBlockGrid() {
   const numberofBlocks = userInput * userInput;
   currentFunction = setDarkFillInColor;
-  setBlockLimit(userInput);
+  setBlockLimit();
 
   gridContainer.style.setProperty(
     'grid-template-columns', 
