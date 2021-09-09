@@ -1,6 +1,32 @@
+:root {
+  --dark-grey-accent: rgb(53, 53, 53);
+  --light-grey-accent: rgba(0, 0, 0, 0.308);
+  --grid-background: rgba(255, 150, 150, 0.144);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  color: var(--dark-grey-accent);
+}
+
+h1 {
+  font-family: 'Permanent Marker', cursive;
+  font-size: 4rem;
+  margin: 0.5em auto;
+  text-align: center;
+}
+
+p {
+  color: black;
+}
+
 .container {
   position: absolute;
-  top: 50%;
+  top: 55%;
   left: 50%;
   transform: translate(-50%, -50%);
   display: grid;
@@ -9,16 +35,14 @@
   width: 30rem;
   height: 30rem;
   border-width: 0.5rem;
-  border-color: rgba(0, 0, 0, 0.308);
+  border-color: var(--light-grey-accent);
   border-style: dashed;
 }
 
 .block {
-  background-color: rgba(255, 150, 150, 0.144);
-  /*height: 1.25em; */
+  background-color: var(--grid-background);
 }
 
 .color {
-  background-color: rgb(53, 53, 53);
-  /*height: 1.25em; */
+  background-color: var(--dark-grey-accent);
 }
