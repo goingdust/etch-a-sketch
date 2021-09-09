@@ -38,11 +38,3 @@ p {
   border-color: var(--light-grey-accent);
   border-style: dashed;
 }
-
-.block {
-  background-color: var(--grid-background);
-}
-
-.color {
-  background-color: var(--dark-grey-accent);
-}
