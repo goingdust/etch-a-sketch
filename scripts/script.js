@@ -3,7 +3,8 @@ const quantity = document.querySelector('.quantity');
 const refreshPageButton = document.querySelector('.refresh');
 const refreshBlocksButton = document.querySelector('.start-over');
 const eraserButton = document.querySelector('.eraser');
-const randomColor = document.querySelector('.random-color');
+const randomColorButton = document.querySelector('.random-color');
+const gradientButton = document.querySelector('.gradient');
 const prompt = document.querySelector('.prompt');
 let userInput = quantity.value;
 let currentFunction;
@@ -66,7 +67,12 @@ function generateRandomColor() {
   let x = Math.floor(Math.random() * 256);
   let y = Math.floor(Math.random() * 256);
   let z = Math.floor(Math.random() * 256);
-  (this).style.backgroundColor = "rgb(" + x + "," + y + "," + z + ")";
+  (this).style.backgroundColor = `rgb(${x}, ${y}, ${z})`;
+}
+
+function generateGradient() {
+  (this).style.backgroundColor = 'rgb(53, 53, 53)';
+  (this).style.opacity -= '-0.1';
 }
 
 refreshPageButton.addEventListener('click', () => {
@@ -86,10 +92,18 @@ eraserButton.addEventListener('click', () => {
   }
 });
 
-randomColor.addEventListener('click', () => {
+randomColorButton.addEventListener('click', () => {
   myDivs = document.querySelectorAll('[data-type=block]');
   for (let i = 0; i < myDivs.length; i++) {
     myDivs[i].removeEventListener('mouseover', currentFunction);
     myDivs[i].addEventListener('mouseover', generateRandomColor);
+  }
+});
+
+gradientButton.addEventListener('click', () => {
+  myDivs = document.querySelectorAll('[data-type=block]');
+  for (let i = 0; i < myDivs.length; i++) {
+    myDivs[i].removeEventListener('mouseover', currentFunction);
+    myDivs[i].addEventListener('mouseover', generateGradient);
   }
 });
