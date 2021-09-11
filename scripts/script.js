@@ -1,6 +1,7 @@
 const gridContainer = document.querySelector('.container');
 const quantity = document.querySelector('.quantity');
 const refreshPageButton = document.querySelector('.refresh');
+const dimensions = document.querySelector('.dimensions');
 const refreshBlocksButton = document.querySelector('.start-over');
 const eraserButton = document.querySelector('.eraser');
 const randomColorButton = document.querySelector('.random-color');
@@ -11,10 +12,13 @@ let currentFunction;
 
 createBlockGrid();
 
+// Functions!
+
 function createBlockGrid() {
   const numberofBlocks = userInput * userInput;
   currentFunction = setDarkFillInColor;
   setBlockLimit();
+  displayGridDimensions();
 
   gridContainer.style.setProperty(
     'grid-template-columns', 
@@ -51,6 +55,10 @@ function resetBlockGrid() {
   }
 }
 
+function displayGridDimensions() {
+  dimensions.textContent = `Your grid is now: ${userInput} x ${userInput}`;
+}
+
 function refreshPage() {
   location.reload();
 }
@@ -75,6 +83,8 @@ function generateGradient() {
   (this).style.opacity -= '-0.1';
 }
 
+// Event Listeners!
+
 refreshPageButton.addEventListener('click', () => {
   refreshPage();
 })
@@ -85,25 +95,25 @@ refreshBlocksButton.addEventListener('click', () => {
 });
 
 eraserButton.addEventListener('click', () => {
-  myDivs = document.querySelectorAll('[data-type=block]');
-  for (let i = 0; i < myDivs.length; i++) {
-    myDivs[i].removeEventListener('mouseover', currentFunction);
-    myDivs[i].addEventListener('mouseover', setPinkBackground);
+  myBlocks = document.querySelectorAll('[data-type=block]');
+  for (let i = 0; i < myBlocks.length; i++) {
+    myBlocks[i].removeEventListener('mouseover', currentFunction);
+    myBlocks[i].addEventListener('mouseover', setPinkBackground);
   }
 });
 
 randomColorButton.addEventListener('click', () => {
-  myDivs = document.querySelectorAll('[data-type=block]');
-  for (let i = 0; i < myDivs.length; i++) {
-    myDivs[i].removeEventListener('mouseover', currentFunction);
-    myDivs[i].addEventListener('mouseover', generateRandomColor);
+  myBlocks = document.querySelectorAll('[data-type=block]');
+  for (let i = 0; i < myBlocks.length; i++) {
+    myBlocks[i].removeEventListener('mouseover', currentFunction);
+    myBlocks[i].addEventListener('mouseover', generateRandomColor);
   }
 });
 
 gradientButton.addEventListener('click', () => {
-  myDivs = document.querySelectorAll('[data-type=block]');
-  for (let i = 0; i < myDivs.length; i++) {
-    myDivs[i].removeEventListener('mouseover', currentFunction);
-    myDivs[i].addEventListener('mouseover', generateGradient);
+  myBlocks = document.querySelectorAll('[data-type=block]');
+  for (let i = 0; i < myBlocks.length; i++) {
+    myBlocks[i].removeEventListener('mouseover', currentFunction);
+    myBlocks[i].addEventListener('mouseover', generateGradient);
   }
 });

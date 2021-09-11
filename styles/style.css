@@ -49,6 +49,10 @@ button, .quantity {
   margin-top: 1em;
 }
 
+.dimensions {
+  margin: 1em;
+}
+
 .buttons {
   display: flex;
   align-items: center;
@@ -70,4 +74,37 @@ button, .quantity {
   border-width: 0.5rem;
   border-color: var(--light-grey-accent);
   border-style: dashed;
+}
+
+@media (max-width: 850px) {
+  html, input, button {
+    font-size: 13px;
+  }
+
+  .sketch-area {
+    flex-direction: column;
+  }
+
+  .buttons {
+    margin-top: 1rem;
+  }
+
+  .start-over, .eraser, .random-color, .gradient {
+    margin: 0.5em;
+  }
+}
+
+@media (max-width: 650px) {
+  html, input, button {
+    font-size: 11px;
+  }
+
+  .container {
+    height: 32rem;
+    width: 32rem;
+  }
+
+  .sketch-area {
+    flex-direction: column;
+  }
 }
