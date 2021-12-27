@@ -66,9 +66,8 @@ button, .quantity {
   top: 55%;
   left: 50%;
   transform: translate(-50%, -50%); */
+  background-color: var(--grid-background);
   display: grid;
-  grid-template-columns: repeat(16, 1fr);
-  grid-template-rows: repeat(16, 1fr);
   width: 40rem;
   height: 40rem;
   border-width: 0.5rem;

@@ -14,77 +14,75 @@ $(document).ready(function () {
   // Functions!
 
   const createBlockGrid = function() {
-    const numberofBlocks = $userInput * $userInput;
+    const numberofBlocks = Number($userInput) * Number($userInput);
     currentFunction = setDarkFillInColor;
     setBlockLimit();
     displayGridDimensions();
 
-    $gridContainer.prop(
+    $gridContainer.css(
       'grid-template-columns',
       `repeat(${$userInput}, 1fr)`
     );
 
-    $gridContainer.prop(
+    $gridContainer.css(
       'grid-template-rows',
       `repeat(${$userInput}, 1fr)`
     );
 
     for (let i = 0; i < numberofBlocks; i++) {
-      const $blockDiv = $('<div>');
+      const $blockDiv = $('<div>').addClass('grid-block');
       $blockDiv.attr('data-type', 'block');
-      $blockDiv.prop('background-color', 'rgba(255, 150, 150, 0.144)');
       $gridContainer.append($blockDiv);
 
       $blockDiv.mouseover(currentFunction);
     }
-  }
+  };
 
   const setBlockLimit = function() {
     if (
     !$userInput
     || $userInput > 100
     || $userInput < 1
-    || typeof $userInput !== typeof 1
+    || Number($userInput) * Number($userInput) === NaN
     ) {
       $userInput = 16;
       $promptText.text('That\'s no good! Please enter a number between 1 \
       and 100.');
     }
-  }
+  };4
 
   const resetBlockGrid = function() {
-    while ($gridContainer.first()) {
-      $gridContainer.remove($gridContainer.first());
-    }
-  }
+    const $gridBlocks = $('div.grid-block');
+    $gridBlocks.remove();
+  };
 
   const displayGridDimensions = function() {
     $dimensions.text(`Your grid is now: ${$userInput} x ${$userInput}`);
-  }
+  };
 
   const refreshPage = function() {
     location.reload();
-  }
+  };
 
   const setDarkFillInColor = function() {
     (this).style.backgroundColor = 'rgb(53, 53, 53)';
-  }
+  };
 
   const setPinkBackground = function() {
     (this).style.backgroundColor = 'rgba(255, 150, 150, 0.144)';
-  }
+  };
 
   const generateRandomColor = function() {
     let x = Math.floor(Math.random() * 256);
     let y = Math.floor(Math.random() * 256);
     let z = Math.floor(Math.random() * 256);
     (this).style.backgroundColor = `rgb(${x}, ${y}, ${z})`;
-  }
+  };
 
   const generateGradient = function() {
     (this).style.backgroundColor = 'rgb(53, 53, 53)';
     (this).style.opacity -= '-0.1';
-  }
+  };
 
   createBlockGrid();
 
@@ -99,7 +97,7 @@ $(document).ready(function () {
     createBlockGrid();
   });
 
-  $eraserButton.addEventListener('click', () => {
+  $eraserButton.click(() => {
     const $myBlocks = $('[data-type=block]');
     for (let i = 0; i < $myBlocks.length; i++) {
       $myBlocks[i].off('mouseover', currentFunction);
@@ -107,7 +105,7 @@ $(document).ready(function () {
     }
   });
 
-  $randomColorButton.addEventListener('click', () => {
+  $randomColorButton.click(() => {
     const $myBlocks = $('[data-type=block]');
     for (let i = 0; i < $myBlocks.length; i++) {
       $myBlocks[i].off('mouseover', currentFunction);
@@ -115,7 +113,7 @@ $(document).ready(function () {
     }
   });
 
-  $gradientButton.addEventListener('click', () => {
+  $gradientButton.click(() => {
     const $myBlocks = $('[data-type=block]');
     for (let i = 0; i < $myBlocks.length; i++) {
       $myBlocks[i].off('mouseover', currentFunction);
