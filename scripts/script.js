@@ -1,119 +1,126 @@
-const gridContainer = document.querySelector('.container');
-const quantity = document.querySelector('.quantity');
-const refreshPageButton = document.querySelector('.refresh');
-const dimensions = document.querySelector('.dimensions');
-const refreshBlocksButton = document.querySelector('.start-over');
-const eraserButton = document.querySelector('.eraser');
-const randomColorButton = document.querySelector('.random-color');
-const gradientButton = document.querySelector('.gradient');
-const prompt = document.querySelector('.prompt');
-let userInput = quantity.value;
-let currentFunction;
+$(document).ready(function () {
+  const $gridContainer = $('.container');
+  const $quantityInput = $('.quantity');
+  const $refreshPageButton = $('.refresh');
+  const $dimensions = $('.dimensions');
+  const $refreshBlocksButton = $('.start-over');
+  const $eraserButton = $('.eraser');
+  const $randomColorButton = $('.random-color');
+  const $gradientButton = $('.gradient');
+  const $promptText = $('.prompt');
+  let $userInput = $quantityInput.val();
+  let currentFunction;
 
-createBlockGrid();
+  // Functions!
 
-// Functions!
+  const createBlockGrid = function() {
+    const numberofBlocks = $userInput * $userInput;
+    currentFunction = setDarkFillInColor;
+    setBlockLimit();
+    displayGridDimensions();
 
-function createBlockGrid() {
-  const numberofBlocks = userInput * userInput;
-  currentFunction = setDarkFillInColor;
-  setBlockLimit();
-  displayGridDimensions();
-
-  gridContainer.style.setProperty(
-    'grid-template-columns', 
-    `repeat(${userInput}, 1fr)`
+    $gridContainer.prop(
+      'grid-template-columns',
+      `repeat(${$userInput}, 1fr)`
     );
 
-  gridContainer.style.setProperty(
-    'grid-template-rows', 
-    `repeat(${userInput}, 1fr)`
+    $gridContainer.prop(
+      'grid-template-rows',
+      `repeat(${$userInput}, 1fr)`
     );
 
-  for (let i = 0; i < numberofBlocks; i++) {
-    const blockDiv = document.createElement('div');
-    blockDiv.setAttribute('data-type', 'block');
-    blockDiv.style.backgroundColor = 'rgba(255, 150, 150, 0.144)';
-    gridContainer.append(blockDiv);
+    for (let i = 0; i < numberofBlocks; i++) {
+      const $blockDiv = $('<div>');
+      $blockDiv.attr('data-type', 'block');
+      $blockDiv.prop('background-color', 'rgba(255, 150, 150, 0.144)');
+      $gridContainer.append($blockDiv);
 
-    blockDiv.addEventListener('mouseover', currentFunction);
+      $blockDiv.mouseover(currentFunction);
+    }
   }
-}
 
-function setBlockLimit() {
-  if (userInput > 100 || userInput < 1 || userInput == null) {
-    userInput = 16;
-    quantity.value = 16;
-    prompt.textContent = 'That\'s no good! Please enter a number between 1 \
-    and 100.';
+  const setBlockLimit = function() {
+    if (
+    !$userInput
+    || $userInput > 100
+    || $userInput < 1
+    || typeof $userInput !== typeof 1
+    ) {
+      $userInput = 16;
+      $promptText.text('That\'s no good! Please enter a number between 1 \
+      and 100.');
+    }
   }
-}
 
-function resetBlockGrid() {
-  while (gridContainer.firstChild) {
-    gridContainer.removeChild(gridContainer.firstChild);
+  const resetBlockGrid = function() {
+    while ($gridContainer.first()) {
+      $gridContainer.remove($gridContainer.first());
+    }
   }
-}
 
-function displayGridDimensions() {
-  dimensions.textContent = `Your grid is now: ${userInput} x ${userInput}`;
-}
+  const displayGridDimensions = function() {
+    $dimensions.text(`Your grid is now: ${$userInput} x ${$userInput}`);
+  }
 
-function refreshPage() {
-  location.reload();
-}
+  const refreshPage = function() {
+    location.reload();
+  }
 
-function setDarkFillInColor() {
-  (this).style.backgroundColor = 'rgb(53, 53, 53)';
-}
+  const setDarkFillInColor = function() {
+    (this).style.backgroundColor = 'rgb(53, 53, 53)';
+  }
 
-function setPinkBackground() {
-  (this).style.backgroundColor = 'rgba(255, 150, 150, 0.144)';
-}
+  const setPinkBackground = function() {
+    (this).style.backgroundColor = 'rgba(255, 150, 150, 0.144)';
+  }
 
-function generateRandomColor() {
-  let x = Math.floor(Math.random() * 256);
-  let y = Math.floor(Math.random() * 256);
-  let z = Math.floor(Math.random() * 256);
-  (this).style.backgroundColor = `rgb(${x}, ${y}, ${z})`;
-}
+  const generateRandomColor = function() {
+    let x = Math.floor(Math.random() * 256);
+    let y = Math.floor(Math.random() * 256);
+    let z = Math.floor(Math.random() * 256);
+    (this).style.backgroundColor = `rgb(${x}, ${y}, ${z})`;
+  }
 
-function generateGradient() {
-  (this).style.backgroundColor = 'rgb(53, 53, 53)';
-  (this).style.opacity -= '-0.1';
-}
+  const generateGradient = function() {
+    (this).style.backgroundColor = 'rgb(53, 53, 53)';
+    (this).style.opacity -= '-0.1';
+  }
 
-// Event Listeners!
-
-refreshPageButton.addEventListener('click', () => {
-  refreshPage();
-})
-
-refreshBlocksButton.addEventListener('click', () => {
-  resetBlockGrid();
   createBlockGrid();
-});
 
-eraserButton.addEventListener('click', () => {
-  myBlocks = document.querySelectorAll('[data-type=block]');
-  for (let i = 0; i < myBlocks.length; i++) {
-    myBlocks[i].removeEventListener('mouseover', currentFunction);
-    myBlocks[i].addEventListener('mouseover', setPinkBackground);
-  }
-});
+  // Event Listeners!
 
-randomColorButton.addEventListener('click', () => {
-  myBlocks = document.querySelectorAll('[data-type=block]');
-  for (let i = 0; i < myBlocks.length; i++) {
-    myBlocks[i].removeEventListener('mouseover', currentFunction);
-    myBlocks[i].addEventListener('mouseover', generateRandomColor);
-  }
-});
+  $refreshPageButton.click(() => {
+    refreshPage();
+  });
 
-gradientButton.addEventListener('click', () => {
-  myBlocks = document.querySelectorAll('[data-type=block]');
-  for (let i = 0; i < myBlocks.length; i++) {
-    myBlocks[i].removeEventListener('mouseover', currentFunction);
-    myBlocks[i].addEventListener('mouseover', generateGradient);
-  }
+  $refreshBlocksButton.click(() => {
+    resetBlockGrid();
+    createBlockGrid();
+  });
+
+  $eraserButton.addEventListener('click', () => {
+    const $myBlocks = $('[data-type=block]');
+    for (let i = 0; i < $myBlocks.length; i++) {
+      $myBlocks[i].off('mouseover', currentFunction);
+      $myBlocks[i].mouseover(setPinkBackground());
+    }
+  });
+
+  $randomColorButton.addEventListener('click', () => {
+    const $myBlocks = $('[data-type=block]');
+    for (let i = 0; i < $myBlocks.length; i++) {
+      $myBlocks[i].off('mouseover', currentFunction);
+      $myBlocks[i].mouseover(generateRandomColor);
+    }
+  });
+
+  $gradientButton.addEventListener('click', () => {
+    const $myBlocks = $('[data-type=block]');
+    for (let i = 0; i < $myBlocks.length; i++) {
+      $myBlocks[i].off('mouseover', currentFunction);
+      $myBlocks[i].mouseover(generateGradient);
+    }
+  });
+
 });
