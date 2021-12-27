@@ -84,6 +84,14 @@ $(document).ready(function () {
     $(this).css('opacity', '-0.1');
   };
 
+  const applyPenToBlocks = function(styleFunction) {
+    const $myBlocks = $('[data-type=block]');
+    for (const block in $myBlocks) {
+      $($myBlocks[block]).off('mouseover', currentFunction);
+      $($myBlocks[block]).mouseover(styleFunction);
+    }
+  };
+
   createBlockGrid();
 
   // Event Listeners!
@@ -98,27 +106,15 @@ $(document).ready(function () {
   });
 
   $eraserButton.click(() => {
-    const $myBlocks = $('[data-type=block]');
-    for (const block in $myBlocks) {
-      $($myBlocks[block]).off('mouseover', currentFunction);
-      $($myBlocks[block]).mouseover(setWhiteBackground);
-    }
+    applyPenToBlocks(setWhiteBackground);
   });
 
   $randomColorButton.click(() => {
-    const $myBlocks = $('[data-type=block]');
-    for (const block in $myBlocks) {
-      $($myBlocks[block]).off('mouseover', currentFunction);
-      $($myBlocks[block]).mouseover(generateRandomColor);
-    }
+    applyPenToBlocks(generateRandomColor);
   });
 
   $gradientButton.click(() => {
-    const $myBlocks = $('[data-type=block]');
-    for (const block in $myBlocks) {
-      $($myBlocks[block]).off('mouseover', currentFunction);
-      $($myBlocks[block]).mouseover(generateGradient);
-    }
+    applyPenToBlocks(generateGradient);
   });
 
 });
