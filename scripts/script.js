@@ -65,23 +65,23 @@ $(document).ready(function () {
   };
 
   const setDarkFillInColor = function() {
-    (this).style.backgroundColor = 'rgb(53, 53, 53)';
+    $(this).css('background-color', 'rgb(53, 53, 53)');
   };
 
-  const setPinkBackground = function() {
-    (this).style.backgroundColor = 'rgba(255, 150, 150, 0.144)';
+  const setWhiteBackground = function() {
+    $(this).css('background-color', '#FFFFFF');
   };
 
   const generateRandomColor = function() {
     let x = Math.floor(Math.random() * 256);
     let y = Math.floor(Math.random() * 256);
     let z = Math.floor(Math.random() * 256);
-    (this).style.backgroundColor = `rgb(${x}, ${y}, ${z})`;
+    $(this).css('background-color', `rgb(${x}, ${y}, ${z})`);
   };
 
   const generateGradient = function() {
-    (this).style.backgroundColor = 'rgb(53, 53, 53)';
-    (this).style.opacity -= '-0.1';
+    $(this).css('background-color', 'rgb(53, 53, 53)');
+    $(this).css('opacity', '-0.1');
   };
 
   createBlockGrid();
@@ -99,25 +99,25 @@ $(document).ready(function () {
 
   $eraserButton.click(() => {
     const $myBlocks = $('[data-type=block]');
-    for (let i = 0; i < $myBlocks.length; i++) {
-      $myBlocks[i].off('mouseover', currentFunction);
-      $myBlocks[i].mouseover(setPinkBackground());
+    for (const block in $myBlocks) {
+      $($myBlocks[block]).off('mouseover', currentFunction);
+      $($myBlocks[block]).mouseover(setWhiteBackground);
     }
   });
 
   $randomColorButton.click(() => {
     const $myBlocks = $('[data-type=block]');
-    for (let i = 0; i < $myBlocks.length; i++) {
-      $myBlocks[i].off('mouseover', currentFunction);
-      $myBlocks[i].mouseover(generateRandomColor);
+    for (const block in $myBlocks) {
+      $($myBlocks[block]).off('mouseover', currentFunction);
+      $($myBlocks[block]).mouseover(generateRandomColor);
     }
   });
 
   $gradientButton.click(() => {
     const $myBlocks = $('[data-type=block]');
-    for (let i = 0; i < $myBlocks.length; i++) {
-      $myBlocks[i].off('mouseover', currentFunction);
-      $myBlocks[i].mouseover(generateGradient);
+    for (const block in $myBlocks) {
+      $($myBlocks[block]).off('mouseover', currentFunction);
+      $($myBlocks[block]).mouseover(generateGradient);
     }
   });
 
