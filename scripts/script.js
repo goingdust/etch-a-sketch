@@ -5,6 +5,7 @@ $(document).ready(function () {
   const $dimensions = $('.dimensions');
   const $refreshBlocksButton = $('.start-over');
   const $eraserButton = $('.eraser');
+  const $regularColorButton = $('.regular');
   const $randomColorButton = $('.random-color');
   const $gradientButton = $('.gradient');
   const $promptText = $('.prompt');
@@ -47,7 +48,6 @@ $(document).ready(function () {
     || $userInput < 1
     || $userInput * $userInput === NaN
     ) {
-      // $userInput = 16;
       $promptText.text('That\'s no good! Please enter a number between 1 \
       and 100.');
       return true;
@@ -70,6 +70,7 @@ $(document).ready(function () {
 
   const setDarkFillInColor = function() {
     $(this).css('background-color', 'rgb(53, 53, 53)');
+    $(this).css('opacity', '1');
   };
 
   const setWhiteBackground = function() {
@@ -81,11 +82,15 @@ $(document).ready(function () {
     let y = Math.floor(Math.random() * 256);
     let z = Math.floor(Math.random() * 256);
     $(this).css('background-color', `rgb(${x}, ${y}, ${z})`);
+    $(this).css('opacity', '1');
   };
 
   const generateGradient = function() {
+    if (Number($(this).css('opacity')) >= 1) {
+      $(this).css('opacity', '0');
+    }
     $(this).css('background-color', 'rgb(53, 53, 53)');
-    $(this).css('opacity', '-0.1');
+    this.style.opacity -= '-0.1';
   };
 
   const applyPenToBlocks = function(styleFunction) {
@@ -111,6 +116,10 @@ $(document).ready(function () {
 
   $eraserButton.click(() => {
     applyPenToBlocks(setWhiteBackground);
+  });
+
+  $regularColorButton.click(() => {
+    applyPenToBlocks(setDarkFillInColor);
   });
 
   $randomColorButton.click(() => {
