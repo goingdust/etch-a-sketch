@@ -8,15 +8,17 @@ $(document).ready(function () {
   const $randomColorButton = $('.random-color');
   const $gradientButton = $('.gradient');
   const $promptText = $('.prompt');
-  let $userInput = $quantityInput.val();
+  let $userInput = Number($quantityInput.val());
   let currentFunction;
 
   // Functions!
 
   const createBlockGrid = function() {
-    const numberofBlocks = Number($userInput) * Number($userInput);
+    const numberofBlocks = $userInput * $userInput;
     currentFunction = setDarkFillInColor;
-    setBlockLimit();
+    if (setBlockLimit()) {
+      return;
+    }
     displayGridDimensions();
 
     $gridContainer.css(
@@ -43,12 +45,14 @@ $(document).ready(function () {
     !$userInput
     || $userInput > 100
     || $userInput < 1
-    || Number($userInput) * Number($userInput) === NaN
+    || $userInput * $userInput === NaN
     ) {
-      $userInput = 16;
+      // $userInput = 16;
       $promptText.text('That\'s no good! Please enter a number between 1 \
       and 100.');
+      return true;
     }
+    return false;
   };4
 
   const resetBlockGrid = function() {
