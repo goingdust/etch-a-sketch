@@ -1,4 +1,4 @@
-$(document).ready(function () {
+$(document).ready(function() {
   const $gridContainer = $('.container');
   const $quantityInput = $('.quantity');
   const $refreshPageButton = $('.refresh');
@@ -98,6 +98,7 @@ $(document).ready(function () {
     for (const block in $myBlocks) {
       $($myBlocks[block]).off('mouseover', currentFunction);
       $($myBlocks[block]).mouseover(styleFunction);
+      currentFunction = styleFunction;
     }
   };
 
